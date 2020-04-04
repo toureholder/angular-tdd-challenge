@@ -1,0 +1,160 @@
+<div class="row">
+  <div class="col-md-12 mb-4">
+    <h1 class="font-weight-bold">FORMULÁRIO</h1>
+  </div>
+  <div class="col-md-6 order-md-2">
+    <div class="row title-bg">
+      <div class="col-md-12">
+        <h5>SEU INGRESSO</h5>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-10 offset-md-2">
+        <div class="row mt-4">
+          <div class="col-md-6 text-center">
+            <img class="img-thumbnail img-movie" [src]="urlImage + movie?.poster_path" [alt]="movie?.title">
+          </div>
+          <div class="col-md-6">
+            <p>Ingresso</p>
+            <p>FILME: {{movie?.title}}</p>
+            <p class="text-blue">{{ movie?.value | currency: 'BRL'}}</p>
+          </div>
+        </div>
+        <div class="row border-top mt-3">
+          <div class="col-md-12 mt-3">
+            <table class="table table-sm table-borderless">
+              <tbody>
+                <tr>
+                  <td class="font-weight-bold">Sub Total</td>
+                  <td class="text-right">{{ calcSubTotal() | currency: 'BRL'}}</td>
+                </tr>
+                <tr>
+                  <td class="font-weight-bold">Frete</td>
+                  <td class="text-right">{{ frete | currency: 'BRL'}}</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td class="font-weight-bold">TOTAL</td>
+                  <td class="text-right text-blue font-weight-bold">{{ calcTotal() | currency: 'BRL'}}</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 order-md-1">
+    <form [formGroup]="formBookingTickets">
+      <div class="row title-bg">
+        <div class="col-md-12">
+          <h5>DADOS PESSOAIS</h5>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 border-right">
+          <div class="row mt-4">
+            <div class="col-md-6">
+              <app-input errorMessage="Nome é obrigatório">
+                <input type="text" class="form-control" formControlName="nome" placeholder="Primeiro nome">
+              </app-input>
+            </div>
+            <div class="col-md-6">
+              <app-input errorMessage="Último nome é obrigatório">
+                <input type="text" class="form-control" formControlName="ultimoNome" placeholder="Último nome">
+              </app-input>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <app-input errorMessage="CPF é obrigatório">
+                <input type="text" class="form-control" formControlName="cpf" placeholder="CPF"
+                  [dropSpecialCharacters]="true" mask="000.000.000-00" [showMaskTyped]="false">
+              </app-input>
+            </div>
+            <div class="col-md-6">
+              <app-input errorMessage="Data de nacimento é obrigatório">
+                <input type="text" class="form-control" formControlName="dataNascimento"
+                  placeholder="Data de nascimento">
+              </app-input>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <app-input errorMessage="Email é obrigatório">
+                <input type="email" class="form-control" formControlName="email" placeholder="Email" [email]="true">
+              </app-input>
+            </div>
+          </div>
+          <div class="row mt-3 mb-3">
+            <div class="col-md-12">
+              <input type="checkbox" [checked]="false" [(ngModel)]="companion" [ngModelOptions]="{standalone: true}"
+                aria-label="Checkbox para acompanhante"> Adicionar acompanhante
+            </div>
+          </div>
+          <div class="row" *ngIf="companion">
+            <div class="col-md-12" [formGroup]="formCompanion">
+              <div class="row">
+                <div class="col-md-12 mb-3">
+                  <h5>ACOMPANHANTE1</h5>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <app-input errorMessage="Nome é obrigatório">
+                    <input type="text" class="form-control" formControlName="nomeAcompanhante"
+                      placeholder="Primeiro nome">
+                  </app-input>
+                </div>
+                <div class="col-md-6">
+                  <app-input errorMessage="Último nome é obrigatório">
+                    <input type="text" class="form-control" formControlName="ultimoNomeAcompanhante"
+                      placeholder="Último nome">
+                  </app-input>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <app-input errorMessage="CPF é obrigatório">
+                    <input type="text" class="form-control" formControlName="cpfAcompanhante" placeholder="CPF"
+                      [dropSpecialCharacters]="true" mask="000.000.000-00" [showMaskTyped]="false">
+                  </app-input>
+                </div>
+                <div class="col-md-6">
+                  <app-input errorMessage="Data de nacimento é obrigatório">
+                    <input type="text" class="form-control" formControlName="dataNascimentoAcompanhante"
+                      placeholder="Data de nascimento">
+                  </app-input>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <app-input errorMessage="Email é obrigatório">
+                    <input type="email" class="form-control" formControlName="emailAcompanhante" placeholder="Email"
+                      [email]="true">
+                  </app-input>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-md-12 mb-3">
+              <h5>DADOS DA ENTREGA</h5>
+            </div>
+            <div class="col-md-12">
+              <app-address-form (address)="changedAddress($event)"
+                (formAddressValidated)="formAddressValidated($event)"></app-address-form>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 offset-md-6 text-right">
+              <button class="btn btn-primary btn-block" (click)="send()"
+                [disabled]="formBookingTickets.invalid || !formAddressValid || (companion && formCompanion.invalid)">ENVIAR</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

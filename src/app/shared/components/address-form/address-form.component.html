@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="col-md-12">
+    <form [formGroup]="formAddress">
+      <div class="row">
+        <div class="col-md-12">
+          <app-input errorMessage="CEP é obrigatório">
+            <input type="text" class="form-control" formControlName="cep" placeholder="CEP"
+              (keyup)="getCep(formAddress.value.cep)" [dropSpecialCharacters]="true" mask="00000-000"
+              [showMaskTyped]="false">
+          </app-input>
+        </div>
+        <div class="col-md-12">
+          <app-input errorMessage="Endereço é obrigatório">
+            <input type="text" class="form-control" formControlName="logradouro" placeholder="Endereço"
+              (keyup)="changedAddress()">
+          </app-input>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <app-input errorMessage="País é obrigatório">
+            <input type="text" class="form-control" formControlName="pais" placeholder="País"
+              (keyup)="changedAddress()">
+          </app-input>
+        </div>
+        <div class="col-md-6">
+          <app-input errorMessage="Estado é obrigatório">
+            <input type="text" class="form-control" formControlName="uf" placeholder="Estado"
+              (keyup)="changedAddress()">
+          </app-input>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <app-input errorMessage="Cidade é obrigatório">
+            <input type="text" class="form-control" formControlName="localidade" placeholder="Cidade"
+              (keyup)="changedAddress()">
+          </app-input>
+        </div>
+        <div class="col-md-12">
+          <app-input errorMessage="Telefone é obrigatório">
+            <input type="text" class="form-control" formControlName="telefone" placeholder="Telefone" ngxPhoneMaskBr
+              minlength="10" (keyup)="changedAddress()">
+          </app-input>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -4,23 +4,36 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PipesModule } from './pipes/pipes.module';
 import { MovieService } from '../core/services/movie.service';
+import { InputComponent } from './components/input/input.component';
+import { AddressFormComponent } from './components/address-form/address-form.component';
+import { NgxPhoneMaskBrModule } from 'ngx-phone-mask-br';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
-  declarations: [],
+  declarations: [InputComponent, AddressFormComponent],
   entryComponents: [],
   imports: [
     RouterModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    PipesModule
+    PipesModule,
+    NgxPhoneMaskBrModule,
+    NgxMaskModule.forRoot(),
   ],
   exports: [
+    // Módulos
     RouterModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    PipesModule
+    PipesModule,
+    NgxPhoneMaskBrModule,
+    NgxMaskModule,
+
+    // Componentes
+    InputComponent,
+    AddressFormComponent
   ]
 })
 

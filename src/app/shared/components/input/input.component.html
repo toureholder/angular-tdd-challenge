@@ -1,0 +1,4 @@
+<div class="form-group has-feedback" [class.has-success]="hasSuccess()" [class.has-error]="hasError()">
+  <ng-content></ng-content>
+  <span class="help-block text-danger" *ngIf="showTip &&hasError()"> {{errorMessage}}</span>
+</div>

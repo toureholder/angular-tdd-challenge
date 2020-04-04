@@ -20,10 +20,15 @@ export class MovieService extends BaseService {
       .pipe(catchError(this.handleError), map(this.jsonDataToMovies));
   }
 
+  getMovie(id: string): Observable<Movie> {
+    return this.http.get<Movie>(`${movieDb.url}${id}?api_key=${movieDb.api_key}&language=pt-BR`)
+      .pipe(catchError(this.handleError));
+  }
+
   jsonDataToMovies(jsonData: any): Movie[] {
     const movies: Movie[] = [];
     if (jsonData && jsonData.results) {
-      jsonData.results.forEach(movie => {
+      jsonData.results.forEach((movie: Movie) => {
         movies.push(movie);
       });
     }
