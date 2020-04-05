@@ -8,9 +8,11 @@ import { InputComponent } from './components/input/input.component';
 import { AddressFormComponent } from './components/address-form/address-form.component';
 import { NgxPhoneMaskBrModule } from 'ngx-phone-mask-br';
 import { NgxMaskModule } from 'ngx-mask';
+import { LoadingComponent } from './components/loading/loading.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
-  declarations: [InputComponent, AddressFormComponent],
+  declarations: [InputComponent, AddressFormComponent, LoadingComponent],
   entryComponents: [],
   imports: [
     RouterModule,
@@ -20,6 +22,7 @@ import { NgxMaskModule } from 'ngx-mask';
     PipesModule,
     NgxPhoneMaskBrModule,
     NgxMaskModule.forRoot(),
+    ToastrModule.forRoot(),
   ],
   exports: [
     // Módulos
@@ -30,10 +33,12 @@ import { NgxMaskModule } from 'ngx-mask';
     PipesModule,
     NgxPhoneMaskBrModule,
     NgxMaskModule,
+    ToastrModule,
 
     // Componentes
     InputComponent,
-    AddressFormComponent
+    AddressFormComponent,
+    LoadingComponent
   ]
 })
 

@@ -10,14 +10,17 @@ import { MovieService } from 'src/app/core/services/movie.service';
 export class ListMoviesComponent implements OnInit {
 
   movies: Movie[];
+  loading: boolean;
 
   constructor(
     private movieService: MovieService
   ) { }
 
   ngOnInit(): void {
+    this.loading = true;
     this.movieService.getUpcomingMovies().subscribe(movieReturn => {
       this.movies = movieReturn;
+      this.loading = false;
     });
   }
 

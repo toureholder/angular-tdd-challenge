@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Movie } from 'src/app/shared/models/movie';
 import { movieDb } from 'src/app/moviedb-config';
-import { map, catchError } from 'rxjs/operators';
+import { map, catchError, retry } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -17,12 +17,16 @@ export class MovieService extends BaseService {
 
   getUpcomingMovies(): Observable<any> {
     return this.http.get<any>(`${movieDb.url}upcoming?api_key=${movieDb.api_key}&language=pt-BR&page=1`)
-      .pipe(catchError(this.handleError), map(this.jsonDataToMovies));
+      .pipe(
+        retry(1),
+        catchError(this.handleError), map(this.jsonDataToMovies));
   }
 
   getMovie(id: string): Observable<Movie> {
     return this.http.get<Movie>(`${movieDb.url}${id}?api_key=${movieDb.api_key}&language=pt-BR`)
-      .pipe(catchError(this.handleError));
+      .pipe(
+        retry(1),
+        catchError(this.handleError));
   }
 
   jsonDataToMovies(jsonData: any): Movie[] {

@@ -14,9 +14,9 @@ export class InputComponent implements OnInit, AfterContentInit {
 
   input: any;
 
-  @ContentChild(NgModel, {static: false}) model !: NgModel;
+  @ContentChild(NgModel, { static: false }) model !: NgModel;
 
-  @ContentChild(FormControlName, {static: false}) control !: FormControlName;
+  @ContentChild(FormControlName, { static: false }) control !: FormControlName;
 
   constructor() { }
 
@@ -36,6 +36,18 @@ export class InputComponent implements OnInit, AfterContentInit {
 
   hasError() {
     return this.input.invalid && (this.input.dirty || this.input.touched);
+  }
+
+  inputDirty(): boolean {
+    let response = false;
+
+    if ( (this.model && this.model.value.length > 0) || (this.control && this.control.value.length > 0)) {
+      response = true;
+    } else {
+      response = false;
+    }
+
+    return response;
   }
 
 }

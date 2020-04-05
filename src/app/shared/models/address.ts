@@ -1,4 +1,5 @@
 export class Address {
+  id: string;
   cep: string;
   logradouro: string;
   complemento: string;

@@ -1,27 +1,41 @@
-# ChallengeReservaIngressos
+# Challenge Reserva Ingressos
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.3.
+## Descrição
 
-## Development server
+Projeto feito em angular 9 em que existe um formulário de reserva de ingressos para os filmes que estão para serem lançados, o projeto está responsivo utilizando o sistema de guid do bootstrap 4, (não estava específicado como deveria ser a lista dos filmes, por isso fiz uma tela inicial que lista os filmes e clicando em um filme da lista é encaminhado para o formulário de reserva), os filmes estão sendo buscados na API do site (https://www.themoviedb.org/), o formulário está seguindo o layout dos mockups disponibilizados, o cep está sendo buscado na API (https://viacep.com.br/).
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Sugestão
 
-## Code scaffolding
+O checkbox está abaixo do formulário do acompanhante no mockup, colocando ele acima do formulário melhora a usabilidade de clicar nele e desclicar. No mais eu mudaria o layout, em cores e fontes, adicionaria ícones nos campos. Em estrutura acho que está correto cumprindo o que foi proposto.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Pré-requisitos
+
+- [NodeJS](https://nodejs.org/en/download/)
+
+Após o download do NodeJS é necessário instalar o Angular CLI, a qual esse projeto foi construído.
+
+```
+npm install -g @angular/cli
+```
+
+## Instalação
+
+Após o download do projeto, existirá um arquivo chamado "moviedb-config-sample.ts" dentro da pasta "app" crie uma copia do arquivo e renomeie chamando-a de "moviedb-config.ts", dentro do arquivo terá um parametro chamado "api_key", configure esse parametro com sua api key do site (https://www.themoviedb.org/), instale as dependências do mesmo indo até o diretório raiz do projeto e executando o comando:
+
+```
+npm install
+```
+Após os passos anteriores estarem concluídos, podemos utilizar a nossa aplicação.
+No diretório raiz do projeto digite o comando:
+
+```
+ng serve
+```
+
+O Serviço estará disponível na porta 4200.
+
+http://localhost:4200
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Execute `ng build` para criar o projeto. Os artefatos de construção serão armazenados no diretório `dist/`. Use o sinalizador `--prod` para uma construção de produção.
