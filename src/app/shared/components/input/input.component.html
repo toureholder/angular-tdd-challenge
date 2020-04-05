@@ -1,0 +1,5 @@
+<div class="form-group has-feedback" [class.has-success]="hasSuccess()" [class.has-error]="hasError()">
+  <ng-content></ng-content>
+  <label class="form-control-placeholder" *ngIf="inputDirty()">{{label}}</label>
+  <span class="help-block text-danger" *ngIf="showTip &&hasError()"> {{errorMessage}}</span>
+</div>
