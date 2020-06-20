@@ -1,13 +1,12 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { ListMoviesComponent } from "./list-movies/list-movies.component";
 import { SharedModule } from "src/app/shared/shared.module";
-import { CardMovieComponent } from "./card-movie/card-movie.component";
+import { MoviesListComponent } from "./movies-list/movies-list.component";
 
-const routes: Routes = [{ path: "", component: ListMoviesComponent }];
+const routes: Routes = [{ path: "", component: MoviesListComponent }];
 
 @NgModule({
-  declarations: [ListMoviesComponent, CardMovieComponent],
+  declarations: [MoviesListComponent],
   imports: [SharedModule, RouterModule.forChild(routes)],
 })
 export class MoviesModule {}
